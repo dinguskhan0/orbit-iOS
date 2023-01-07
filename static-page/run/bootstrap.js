@@ -39,7 +39,7 @@ try {
 } catch (e) {
   alert(e.message)
   console.error(e)
-  window.location.assign('/error/#encoding')
+  //window.location.assign('/error/#encoding')
 }
 
 // let doc
