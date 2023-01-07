@@ -43,24 +43,18 @@ ion-icon {
   font-size: 15vmax;
 }
 
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
-#fadecontainer  {
+#fadecontainer > * {
   opacity: 0;
-  transition: all 0.5s;
+  transition: opacity 0.5s;
 }
 
-#fadecontainer.fadein {
+#fadecontainer.fadein > * {
   opacity: 1;
+  transition: opacity 0.5s;
 }
 
-#fadecontainer.fadeout {
+#fadecontainer.fadeout > * {
   opacity: 0;
+  transition: opacity 0.5s;
 }
