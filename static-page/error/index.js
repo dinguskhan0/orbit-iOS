@@ -1,6 +1,5 @@
 if ("serviceWorker" in navigator) {
-  console.log('register service worker')
-  navigator.serviceWorker.register("/service-worker.js");
+  navigator.serviceWorker.register("../worker.js");
 }
 
 const errcode = window.location.hash.slice(1)

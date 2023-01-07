@@ -52,7 +52,21 @@ ion-icon {
   }
 }
 
-body > * {
+#fadecontainer  {
   opacity: 0;
   animation: fade 1s forwards ;
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+#fadecontainer.fadeout {
+  opacity: 1;
+  animation: fadeout 0.2s forwards;
 }

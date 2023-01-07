@@ -1,29 +1,34 @@
-const showNotification = (opts) => {
-
+if (!window.isSecureContext) {
+  window.location.assign('../error/#security')
 }
 
-
-console.log('new file! 5')
+(async () => {
 
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('../worker.js', {scope: '../run'})
-    .then((registration) => {
-      console.log('Service Worker registration completed with scope: ',
-        registration.scope)
-      registration.addEventListener('updatefound', () => {
-        console.log('update found')
-      })
-    }, (err) => {
-      console.log('Service Worker registration failed', err)
+  try {
+  const registration = await navigator.serviceWorker.register('../worker.js', {scope: '../run'})
+    console.log('Service Worker registration completed with scope: ', registration.scope)
+    registration.addEventListener('updatefound', () => {
+      console.log('update found')
     })
-  })
+  } catch (error) {
+    console.log('Service Worker registration failed', err)
+  }
 } else {
   console.log('Service Workers not supported')
 }
 
-if (!window.isSecureContext) {
-  window.location.assign('../error/#security')
+const installationData = localStorage.getItem('orbit-iOS/data')
+if (!installationData) {
+  const installationData = {
+    installedAsWorker: true
+  }
+
+  await new Promise(r => setTimeout(r, 5000))
+  document.querySelector('#fadecontainer').classList.add('fadeout')
+  await new Promise(r => setTimeout(r, 1000))
+  localStorage.setItem('orbit-iOS/data', installationData)
+  location.reload()
 }
 
 const params = new URLSearchParams(window.location.search)
@@ -91,3 +96,5 @@ if (window.localStorage) {
   delete window.localStorage
   window.localStorage = new IsolatedStorage()
 }
+
+})()

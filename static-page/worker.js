@@ -1,4 +1,4 @@
-const cacheName = 'orbit-ios-v13'
+const cacheName = 'orbit-ios-v10'
 
 self.addEventListener("install", (e) => {
   console.log('install')
@@ -11,15 +11,15 @@ self.addEventListener("activate", (e) => {
       return Promise.all(
         keyList.map((key) => {
           if (key === cacheName) {
-            return;
+            return
           }
           console.log('delete old cache')
           return caches.delete(key);
         })
-      );
+      )
     })
-  );
-});
+  )
+})
 
 self.addEventListener("fetch", (e) => {
   try {
