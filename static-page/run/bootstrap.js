@@ -56,4 +56,11 @@ try {
 
 document.documentElement.innerHTML = data
 
+document.querySelectorAll('script').forEach(script => {
+  console.log('process')
+  const newScript = document.createElement('script')
+  newScript.innerHTML = script.innerHTML
+  script.parentNode.appendChild(newScript)
+  script.remove()
+})
 })()
