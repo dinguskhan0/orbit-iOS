@@ -2,6 +2,7 @@ const showNotification = (opts) => {
 
 }
 
+
 console.log('new file! 5')
 
 if ('serviceWorker' in navigator) {
@@ -22,24 +23,23 @@ if ('serviceWorker' in navigator) {
 }
 
 if (!window.isSecureContext) {
-  window.location.assign('/error/#security')
+  window.location.assign('../error/#security')
 }
 
 const params = new URLSearchParams(window.location.search)
 
 if (!params.has('data')) {
-  window.location.assign('/error/#empty')
+  window.location.assign('../error/#empty')
 }
 
-let data = (params.get('data'))
-alert(data)
+let data = decodeURIComponent(params.get('data'))
+data = data.replace(/ /g, '+')
 
 try {
   data = atob(data)
 } catch (e) {
-  alert(e.message)
   console.error(e)
-  //window.location.assign('/error/#encoding')
+  window.location.assign('../error/#encoding')
 }
 
 // let doc

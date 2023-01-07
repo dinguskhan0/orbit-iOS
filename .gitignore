@@ -1,1 +1,4 @@
-local-dev-server
+# local development server
+local-dev-server/node_modules
+local-dev-server/package-lock.json
+local-dev-server/ssl 
