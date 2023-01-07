@@ -31,7 +31,7 @@ if (!params.has('data')) {
   window.location.assign('/error/#empty')
 }
 
-let data = decodeURIComponent(params.get('data'))
+let data = (params.get('data'))
 alert(data)
 
 try {
