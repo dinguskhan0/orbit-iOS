@@ -34,6 +34,7 @@ if (!installationData) {
   await new Promise(r => setTimeout(r, 1000))
   localStorage.setItem('orbit-iOS/data', installationData)
   location.reload()
+  return
 }
 
 const params = new URLSearchParams(window.location.search)

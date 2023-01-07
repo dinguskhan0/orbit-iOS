@@ -1,4 +1,4 @@
-const cacheName = 'orbit-ios-v15'
+const cacheName = 'orbit-ios-v17'
 
 self.addEventListener("install", (e) => {
   console.log('install')
