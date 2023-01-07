@@ -1,0 +1,48 @@
+#rocket {
+  animation: rocket 1s cubic-bezier(0.5, 1, 0.5, 1.5) infinite;
+}
+
+@keyframes rocket {
+  0% {
+    transform: rotate(-2.5deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+  to {
+    transform: rotate(-2.5deg);
+  }
+}
+
+#rocket-container {
+  animation: rocket-container 4s cubic-bezier(0.5, 1, 0.5, 1.5) infinite;
+  padding-bottom: 1vmax;
+}
+
+@keyframes rocket-container {
+  0% {
+    transform: translate(1vmax,-1vmax);
+  }
+  50% {
+    transform: translate(-1vmax,1vmax);
+  }
+  to {
+    transform: translate(1vmax,-1vmax);
+  }
+}
+
+#waitlong {
+  font-size: 0.5em;
+  transform: translate(0vmax,3vmax);
+  opacity: 0;
+  animation: waitlong 1s ease-in 5s forwards;
+}
+
+@keyframes waitlong {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
