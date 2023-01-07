@@ -1,26 +1,44 @@
-if ("serviceWorker" in navigator) {
-  console.log('register service worker')
-  navigator.serviceWorker.register("./service-worker.js");
+const showNotification = (opts) => {
+
+}
+
+console.log('new file! 5')
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/worker.js', {scope: '/run'})
+    .then((registration) => {
+      console.log('Service Worker registration completed with scope: ',
+        registration.scope)
+      registration.addEventListener('updatefound', () => {
+        console.log('update found')
+      })
+    }, (err) => {
+      console.log('Service Worker registration failed', err)
+    })
+  })
+} else {
+  console.log('Service Workers not supported')
 }
 
 if (!window.isSecureContext) {
   window.location.assign('/error/#security')
-
 }
 
-// const params = new URLSearchParams(window.location.search)
+const params = new URLSearchParams(window.location.search)
 
-// if (!params.has('data')) {
-//   window.location.assign('/error/#empty')
-// }
+if (!params.has('data')) {
+  window.location.assign('/error/#empty')
+}
 
-// let data = params.get('data')
+let data = decodeURIComponent(params.get('data'))
 
-// try {
-//   data = atob(data)
-// } catch {
-//   window.location.assign('/error/#encoding')
-// }
+try {
+  data = atob(data)
+} catch (e) {
+  console.error(e)
+  // window.location.assign('/error/#encoding')
+}
 
 // let doc
 // try {
@@ -48,23 +66,26 @@ if (!window.isSecureContext) {
 // }
 
 
-// /* restrict access to the Storage API, Cache API, and IndexedDB */
-// if (window.localStorage) {
-//   const unsafeStorage = window.localStorage
+document.documentElement.innerHTML = data
 
-//   class IsolatedStorage {
-//     constructor() {
-//       Object.defineProperties(this, {
-//         length: {
-//           set: undefined,
-//           get: () => unsafeStorage.length,
-//           configurable: false
-//         }
-//       })
-//       Object.setPrototypeOf(this, null)
-//     }
-//   }
 
-//   delete window.localStorage
-//   window.localStorage = new IsolatedStorage()
-// }
+/* restrict access to the Storage API, Cache API, and IndexedDB */
+if (window.localStorage) {
+  const unsafeStorage = window.localStorage
+
+  class IsolatedStorage {
+    constructor() {
+      Object.defineProperties(this, {
+        length: {
+          set: undefined,
+          get: () => unsafeStorage.length,
+          configurable: false
+        }
+      })
+      Object.setPrototypeOf(this, null)
+    }
+  }
+
+  delete window.localStorage
+  window.localStorage = new IsolatedStorage()
+}
