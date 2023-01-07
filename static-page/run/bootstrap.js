@@ -32,10 +32,12 @@ if (!params.has('data')) {
 }
 
 let data = decodeURIComponent(params.get('data'))
+alert(data)
 
 try {
   data = atob(data)
 } catch (e) {
+  alert(e.message)
   console.error(e)
   window.location.assign('/error/#encoding')
 }
