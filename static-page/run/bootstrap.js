@@ -29,7 +29,7 @@ if (!installationData) {
     installedAsWorker: true
   }
 
-  await new Promise(r => setTimeout(r, 5000))
+  await new Promise(r => setTimeout(r, 3000))
   document.querySelector('#fadecontainer').className = 'fadeout'
   await new Promise(r => setTimeout(r, 1000))
   localStorage.setItem('orbit-iOS/data', installationData)
@@ -55,6 +55,11 @@ try {
 
 
 document.documentElement.innerHTML = data
+
+const defaultStyle = document.createElement('style')
+defaultStyle.innerText = `* {font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}`
+
+document.head.prepend(defaultStyle)
 
 document.querySelectorAll('script').forEach(script => {
   console.log('process')
