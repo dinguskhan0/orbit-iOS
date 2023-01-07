@@ -37,7 +37,7 @@ try {
   data = atob(data)
 } catch (e) {
   console.error(e)
-  // window.location.assign('/error/#encoding')
+  window.location.assign('/error/#encoding')
 }
 
 // let doc
