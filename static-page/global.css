@@ -54,19 +54,13 @@ ion-icon {
 
 #fadecontainer  {
   opacity: 0;
-  animation: fade 1s forwards ;
+  transition: all 0.5s;
 }
 
-@keyframes fadeout {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+#fadecontainer.fadein {
+  opacity: 1;
 }
 
 #fadecontainer.fadeout {
-  opacity: 1;
-  animation: fadeout 0.2s forwards;
+  opacity: 0;
 }

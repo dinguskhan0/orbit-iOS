@@ -4,6 +4,11 @@ if (!window.isSecureContext) {
 
 (async () => {
 
+await new Promise(r => setTimeout(r, 500))
+
+document.querySelector('#fadecontainer').className = 'fadein'
+
+
 if ('serviceWorker' in navigator) {
   try {
   const registration = await navigator.serviceWorker.register('../worker.js', {scope: '../run'})
@@ -25,7 +30,7 @@ if (!installationData) {
   }
 
   await new Promise(r => setTimeout(r, 5000))
-  document.querySelector('#fadecontainer').classList.add('fadeout')
+  document.querySelector('#fadecontainer').className = 'fadeout'
   await new Promise(r => setTimeout(r, 1000))
   localStorage.setItem('orbit-iOS/data', installationData)
   location.reload()
