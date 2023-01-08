@@ -61,11 +61,18 @@ defaultStyle.innerText = `* {font-family: system-ui, -apple-system, BlinkMacSyst
 
 document.head.prepend(defaultStyle)
 
-document.querySelectorAll('script').forEach(script => {
-  console.log('process')
-  const newScript = document.createElement('script')
-  newScript.innerHTML = script.innerHTML
-  script.parentNode.appendChild(newScript)
-  script.remove()
+const replicatedElements = [
+  'link',
+  'script'
+]
+
+
+replicatedElements.forEach(selector => {
+  document.querySelectorAll(selector).forEach(elmt => {
+    console.log('process')
+    const newScript = elmt.cloneNode(true)
+    elmt.parentNode.appendChild(newScript)
+    elmt.remove()
+  })
 })
 })()
