@@ -70,8 +70,10 @@ const replicatedElements = [
 replicatedElements.forEach(selector => {
   document.querySelectorAll(selector).forEach(elmt => {
     console.log('process')
-    const newScript = elmt.cloneNode(true)
-    elmt.parentNode.appendChild(newScript)
+    const duplicate = document.createElement(elmt.nodeName)
+    duplicate.innerHTML = elmt.innerHTML
+    elmt.getAttributeNames().forEach(k => duplicate.setAttribute(k, elmt.getAttribute(k)))
+    elmt.parentNode.appendChild(duplicate)
     elmt.remove()
   })
 })
