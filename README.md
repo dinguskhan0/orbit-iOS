@@ -1,4 +1,9 @@
+# archival notice
+
+archived in favor of [data-url-booster](https://github.com/dinguskhan0/data-url-booster)
+
 # orbit-iOS
+
 create **standalone web apps** for iOS that utilize modern web technology to create a seamless user experience  
 > **important!** 
 > this tool requires iOS 12 or later!
